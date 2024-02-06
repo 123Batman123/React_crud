@@ -8,23 +8,36 @@ export const CrudList = {
             method: 'get',
             url: BASE_URL,
         })
-            .then(i => changeState(i.data))
+        .then(i => {
+            if (i.status >= 200 && i.status < 300) {
+                return changeState(i.data)
+            }
+            else {
+                throw new Error().message
+            }
+        })
+        
     },
 
-    post: (text: string) => {
+    post: (text: string, check: React.Dispatch<React.SetStateAction<Boolean>>) => {
         axios({
             method: 'post',
             url: BASE_URL,
             data: {
                 content: text
-            }
-        })
+            },
+        }).then(() => {
+            check(true)
+        }
+        )
     },
 
-    delete: (id: number) => {
+    delete: (id: number, check: React.Dispatch<React.SetStateAction<Boolean>>) => {
         axios({
             method: 'delete',
             url: BASE_URL + `/${id}`,
-        })
+        }).then(
+            () => check(true)
+        )
     }
 }

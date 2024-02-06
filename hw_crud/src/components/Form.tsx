@@ -10,14 +10,12 @@ export const Form: FC<PropsForm> = ({check}) => {
 
     const hundleSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-        CrudList.post(form)
-        check(prev => !prev)
+        CrudList.post(form, check)
         setForm('')
     }
 
     const hundleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-        const {target:{name, value}} = e
-        console.log(name, value)
+        const {target:{value}} = e
         setForm(value)
     }
 

@@ -14,10 +14,12 @@ export const MainPage: FC = () => {
     const [check, setCheck] = useState<Boolean>(false)
     const [noteList, setNoteList] = useState<TypeNote[]>([])
 
-    
     useEffect(
         () => {
-            CrudList.get(setNoteList)
+            if (check) {
+                CrudList.get(setNoteList)
+                setCheck(false)
+            }
         }, [check]
     )
     

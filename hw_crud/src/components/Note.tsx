@@ -9,8 +9,7 @@ type PropsNote = {
 
 export const Note: FC<PropsNote> = ({data, check}) => {
     const hundleDelete = (id: number) => {
-        CrudList.delete(id)
-        check(prev => !prev)
+        CrudList.delete(id, check)
     }
 
     return (

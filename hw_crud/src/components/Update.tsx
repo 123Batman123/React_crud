@@ -7,7 +7,7 @@ type PropsUpdate = {
 export const Update: FC<PropsUpdate> = ({check}) => {
 
     const hundleUpdateClick = () => {
-        check(prev => !prev)
+        check(true)
     }
 
     return (
